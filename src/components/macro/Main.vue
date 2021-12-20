@@ -25,10 +25,11 @@ export default {
     methods: {
         ricercaFilm: function () {
 
-            axios.get('https://api.themoviedb.org/3/search/movie', {
+            axios.get('https://api.themoviedb.org/3/search/movie'&&'https://api.themoviedb.org/3/search/tv', {
                 params: {
                     api_key: "1f48677f96ae221c18b9129486cfa03a",
-                    query: this.stringaRicerca
+                    query: this.stringaRicerca,
+                    language: "it-IT"
                 }
             })
             .then(response => this.film = response.data.results)

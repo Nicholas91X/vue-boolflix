@@ -1,7 +1,7 @@
 <template>
     <div id="film-card">
-        <h2>{{film.title}}</h2>
-        <h2>{{film.original_title}}</h2>
+        <h2>{{film.title}}{{film.name}}</h2>
+        <h2>{{film.original_title}}{{film.original_name}}</h2>
         <h3>{{film.original_language}}</h3>
         <h3>{{film.vote_average}}</h3>
     </div>
