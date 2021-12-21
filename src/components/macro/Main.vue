@@ -1,43 +1,26 @@
 <template>
     <main>
-        <input type="text" placeholder="Cerca film" v-model="stringaRicerca">
-        <button @click="ricercaFilm">Cerca</button>
         <section>
-            <FilmCard v-for="(film,index) in film" :key="index" :film="film"/>
+            <h2>Films</h2>
+            <FilmCard v-for="(movie,index) in film" :key="index" :titolo="film[index].title" :titoloOriginale="film[index].original_title" :lingua="film[index].original_language" :voto="film[index].vote_average"/>
+        </section>
+        <section>
+            <h2>Serie</h2>
+            <FilmCard v-for="(movie,index) in serie" :key="index" :titolo="serie[index].name" :titoloOriginale="serie[index].original_name" :lingua="serie[index].original_language" :voto="serie[index].vote_average"/>
         </section>
     </main>
 </template>
 
 <script>
-import axios from "axios";
 import FilmCard from "../commons/FilmCard.vue"
 export default {
     name: "Main",
-    data() {
-        return {
-            stringaRicerca: "",
-            film: ""
-        }
+    props: {
+        film: Array,
+        serie: Array
     },
     components: {
         FilmCard
-    },
-    methods: {
-        ricercaFilm: function () {
-
-            axios.get('https://api.themoviedb.org/3/search/movie'&&'https://api.themoviedb.org/3/search/tv', {
-                params: {
-                    api_key: "1f48677f96ae221c18b9129486cfa03a",
-                    query: this.stringaRicerca,
-                    language: "it-IT"
-                }
-            })
-            .then(response => this.film = response.data.results)
-            .catch(function (error) {
-                console.log(error);
-            });
-            console.log(this.film);
-        }
     }
 }
 </script>

@@ -1,9 +1,9 @@
 <template>
     <div id="film-card">
-        <h2>{{film.title}}{{film.name}}</h2>
-        <h2>{{film.original_title}}{{film.original_name}}</h2>
-        <h3>{{film.original_language}}</h3>
-        <h3>{{film.vote_average}}</h3>
+        <h3>{{titolo}}</h3>
+        <h3>{{titoloOriginale}}</h3>
+        <h4>{{lingua}}</h4>
+        <h4>{{voto}}</h4>
     </div>
 </template>
 
@@ -11,7 +11,10 @@
 export default {
     name: "FilmCard",
     props: {
-        film: Object
+        titolo: String,
+        titoloOriginale: String,
+        lingua: String,
+        voto: Number
     }
 }
 </script>

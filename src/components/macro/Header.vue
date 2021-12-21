@@ -1,12 +1,20 @@
 <template>
     <div>
-
+        <input type="text" placeholder="Cerca film" v-model="stringaRicerca">
+        <button @click="$emit('search',stringaRicerca)">Cerca</button>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Header"
+    name: "Header",
+    data() {
+        return {
+            stringaRicerca: "",
+            arrayFilm: [],
+            arraySerie: []
+        }
+    }
 }
 </script>
 
