@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @search="ricercaFilm"/>
-    <Main :film="arrayFilm" :serie="arraySerie"/>
+    <Main :film="arrayFilm" :serie="arraySerie" :trend="arrayDefault"/>
   </div>
 </template>
 
@@ -14,8 +14,21 @@ export default {
   data() {
     return {
       arrayFilm: [],
-      arraySerie: []
+      arraySerie: [],
+      arrayDefault: []
     }
+  },
+  created() {
+      axios.get('https://api.themoviedb.org/3/trending/all/day', {
+                params: {
+                    api_key: "1f48677f96ae221c18b9129486cfa03a"
+                }
+            })
+            .then(response => this.arrayDefault = response.data.results)
+            .catch(function (error) {
+                console.log(error);
+            });
+
   },
   components: {
       Header,
@@ -23,7 +36,7 @@ export default {
   },
   methods: {
         ricercaFilm: function (stringaRicerca) {
-
+          if (stringaRicerca != "") {
             axios.get('https://api.themoviedb.org/3/search/movie', {
                 params: {
                     api_key: "1f48677f96ae221c18b9129486cfa03a",
@@ -49,11 +62,13 @@ export default {
                 console.log(error);
             });
             console.log(this.arraySerie);
+          }
         }
     }
 }
 </script>
 
 <style lang="scss">
+@import "./assets/global.scss";
 
 </style>
